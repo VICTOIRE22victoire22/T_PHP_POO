@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Expo index{% endblock %}
+
+{% block body %}
+    <h1 class="text-4xl mb-8 font-bold">Toutes les expositions</h1>
+    
+<div class="max-w-screen-lg mx-auto rounded shadow">
+    <table class="min-w-full divide-y-2 divide-gray-200">
+        <thead class="ltr:text-left rtl:text-right">
+            <tr class="*:font-medium *:text-gray-900">
+                <th class="px-3 py-2 whitespace-nowrap">Nom de l'expo</th>
+                <th class="px-3 py-2 whitespace-nowrap">Date de début</th>
+                <th class="px-3 py-2 whitespace-nowrap">Termine le</th>
+                <th class="px-3 py-2 whitespace-nowrap">Description</th>
+                <th class="px-3 py-2 whitespace-nowrap">Localisation</th>
+                <th class="px-3 py-2 whitespace-nowrap">Prix</th>
+                <th class="px-3 py-2 whitespace-nowrap">actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+        {% for expo in expos %}
+            <tr class="*:text-gray-900 *:first:font-medium">
+                <td class="px-3 py-2 whitespace-nowrap">{{ expo.name }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">{{ expo.startDate ? expo.startDate|date('Y-m-d') : '' }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">{{ expo.endDate ? expo.endDate|date('Y-m-d') : '' }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">{{ expo.description }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">{{ expo.location }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">{{ expo.price }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">
+                    <a href="{{ path('app_expo_show', {'id': expo.id}) }}">show</a>
+                    <a href="{{ path('app_expo_edit', {'id': expo.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr class="*:text-gray-900 *:first:font-medium">
+                <td class="px-3 py-2 whitespace-nowrap" colspan="13">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <a href="{{ path('app_expo_new') }}">Ajouter une exposition</a>
+{% endblock %}

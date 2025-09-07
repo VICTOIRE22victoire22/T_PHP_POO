@@ -1,0 +1,7 @@
+# Ceci est un fichier qui permet de donner à GIT la consigne de ne pas tracker toute la liste qui s'y trouve.
+
+###> Dossier de dépendances <###
+/var
+/vendor
+
+/Exercices
